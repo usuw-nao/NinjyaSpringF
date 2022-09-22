@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.MemberMapper">
+gggg
+
+mybatis練習Bのやつ途中
+
+
+	<select id="selectAll"
+		resultType="Member">
+		select * from Members;
+	</select>
+
+	<insert id="addMember" 
+	parameterType="com.example.app.domain.Member">
+		insert into members (name,age,address,type_id,born,created)
+		values(#{name},#{age},#{address}, #{born},#{typeId},now())
+	</insert>
+
+</mapper>

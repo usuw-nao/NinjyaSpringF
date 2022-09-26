@@ -2,20 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.mapper.MemberMapper">
-gggg
-
-mybatis練習Bのやつ途中
 
 
-	<select id="selectAll"
-		resultType="Member">
-		select * from Members;
+	<select id="selectAll" resultType="Member">
+		select
+		members.id,members.name,members.age,members.address,members.born,members.created,
+		member_types.name as typeName
+		from members
+		join member_types
+		on members.type_id = member_types.id
 	</select>
 
-	<insert id="addMember" 
-	parameterType="com.example.app.domain.Member">
-		insert into members (name,age,address,type_id,born,created)
-		values(#{name},#{age},#{address}, #{born},#{typeId},now())
+	<select id="selectById" resultType="Member">
+		select
+		members.id,members.name.members.age,members.address,
+		members.born,members.created,
+		members.type_id as typeId
+		from members
+		where members.id = #{id}
+	</select>
+
+	<insert id="insert" parameterType="Member">
+		insert into members
+		(name,age,address,type_id,born,created)
+		values
+		(#{name},#{age},#{address}, #{born},#{typeId},now())
 	</insert>
+
+	<update id="update" parameterType="Member">
+		update members
+		set name = #{name},age=#{age},address=#{address},type_id=#{typeId}
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from members where id = #{id}
+	</delete>
+
 
 </mapper>

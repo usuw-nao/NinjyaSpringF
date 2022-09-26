@@ -9,6 +9,8 @@ import com.example.app.domain.Member;
 @Mapper
 public interface MemberMapper {
 	List<Member> selectAll() throws Exception;
+	
+	Member selectById(Integer id)throws Exception;
 
 	void insert(Member member) throws Exception;
 

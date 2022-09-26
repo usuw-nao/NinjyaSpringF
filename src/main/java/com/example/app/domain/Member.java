@@ -27,6 +27,8 @@ public class Member {
 	
 	private Integer typeId;
 	
+	private String typeName;
+	
 	private String born;
 	
 	private Date created;

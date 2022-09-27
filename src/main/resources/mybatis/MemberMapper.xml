@@ -5,21 +5,21 @@
 
 
 	<select id="selectAll" resultType="Member">
-		select
-		members.id,members.name,members.age,members.address,members.born,members.created,
-		member_types.name as typeName
-		from members
-		join member_types
-		on members.type_id = member_types.id
+		SELECT
+		members.id, members.name,members.age,
+		members.address, members.created,
+		member_types.name AS typeName
+		FROM members
+		JOIN member_types
+		ON members.type_id = member_types.id
 	</select>
-
-	<select id="selectById" resultType="Member">
-		select
-		members.id,members.name.members.age,members.address,
-		members.born,members.created,
-		members.type_id as typeId
-		from members
-		where members.id = #{id}
+	<select id="selectById" parameterType="int" resultType="Member">
+		SELECT
+		members.id, members.name,members.age,
+		members.address, members.created,
+		members.type_id AS typeId
+		FROM members
+		WHERE members.id = #{id}
 	</select>
 
 	<insert id="insert" parameterType="Member">
@@ -31,7 +31,8 @@
 
 	<update id="update" parameterType="Member">
 		update members
-		set name = #{name},age=#{age},address=#{address},type_id=#{typeId}
+		set name =
+		#{name},age=#{age},address=#{address},type_id=#{typeId}
 		where id = #{id}
 	</update>
 

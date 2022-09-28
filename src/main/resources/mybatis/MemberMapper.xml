@@ -13,6 +13,7 @@
 		JOIN member_types
 		ON members.type_id = member_types.id
 	</select>
+	
 	<select id="selectById" parameterType="int" resultType="Member">
 		SELECT
 		members.id, members.name,members.age,
@@ -21,19 +22,36 @@
 		FROM members
 		WHERE members.id = #{id}
 	</select>
+	
+	<select id="selectLimited" resultType="Member">
+	SELECT
+	members.id,members.name,members.age,members.address,
+	members.born,members.created,
+	member_types.name AS typeName
+	FROM members
+	JOIN member_types
+	ON members.type_id = member_types.id
+	LIMIT #{offset},#{limit}
+	</select>
+	
+	<select id="count" resultType = "long">
+	select count(*) from members
+	</select>
+
+
 
 	<insert id="insert" parameterType="Member">
-		insert into members
+		INSERT INTO members
 		(name,age,address,type_id,born,created)
-		values
+		VALUES
 		(#{name},#{age},#{address}, #{born},#{typeId},now())
 	</insert>
 
 	<update id="update" parameterType="Member">
-		update members
-		set name =
+		UPDATE members
+		SET name =
 		#{name},age=#{age},address=#{address},type_id=#{typeId}
-		where id = #{id}
+		WHERE id = #{id}
 	</update>
 
 	<delete id="delete" parameterType="int">

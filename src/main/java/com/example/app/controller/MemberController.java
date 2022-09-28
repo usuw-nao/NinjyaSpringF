@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.domain.Member;
@@ -21,13 +22,19 @@ import com.example.app.service.MemberService;
 @Controller
 @RequestMapping("/members")
 public class MemberController {
+	//1ページあたりの表示人数
+	private static final int NUM_PER_PAGE = 5;
 	
 	@Autowired
 	MemberService service;
 	
 	@GetMapping
-	public String list(Model model)throws Exception{
-		model.addAttribute("members",service.getMemberList());
+	public String list(
+			@RequestParam(name = "page",defaultValue = "1")Integer page,
+			Model model)throws Exception{
+		model.addAttribute("members",service.getMemberListByPage(page,NUM_PER_PAGE));
+		model.addAttribute("page",page);
+		model.addAttribute("totalPages",service.getTotalPages(NUM_PER_PAGE));
 		return "members/list";
 	}
 	
@@ -35,7 +42,7 @@ public class MemberController {
 	@GetMapping("/add")
 	public String add(Model model)throws Exception{
 		model.addAttribute("title","会員の追加");
-		model.addAttribute("member",new Member());
+		model.addAttribute("members",new Member());
 		model.addAttribute("types",service.getTypeList());
 		return "members/save";
 	}
@@ -58,7 +65,7 @@ public class MemberController {
 	@GetMapping("/edit/{id}")
 	public String editGet(@PathVariable Integer id,Model model)throws Exception{
 		model.addAttribute("title","会員情報の変更");
-		model.addAttribute("member",service.getMemberById(id));
+		model.addAttribute("members",service.getMemberById(id));
 		model.addAttribute("types",service.getTypeList());
 		return "members/save";
 	}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>お知らせ一覧</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+<h1 class="mt-4">お知らせ一覧</h1>
+
+<div class="alert alert-success mt-4">
+お知らせを追加しました等、操作に応じたメッセージ
+</div>
+
+
+<p>
+<a class="mt-4 btn btn-primary" th:href="@{/news/add}">お知らせの追加</a>
+<a class="mt-4 ml-4 btn btn-secondary" th:href="@{/logout}">ログアウト</a>
+</p>
+
+<table class="table">
+<tr>
+<th>ID</th>
+<th>投稿者</th>
+<th>タイトル</th>
+<th>掲載日</th>
+<th>操作</th>
+</tr>
+
+<tr th:each="news : ${newsList}">
+<td>[[${news.id}]]</td>
+<td>[[${news.author}]]</td>
+<td>[[${news.title}]]</td>
+<td>[[${#dates.format(news.postDate,'yyyy年MM月dd日')}]]</td>
+<td><a class="btn btn-primary" th:href="@{/news/{id}(id=${news.id})}">詳細を見る</a>
+</td>
+</tr>
+20200929は
+１１－３から
+</table>
+</div>
+</body>
+</html>

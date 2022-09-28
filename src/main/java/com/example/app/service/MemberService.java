@@ -9,6 +9,10 @@ public interface MemberService {
 	List<Member> getMemberList() throws Exception;
 
 	Member getMemberById(Integer id) throws Exception;
+	
+	//ページ分割
+	List<Member>getMemberListByPage(int page, int numPerPage)throws Exception;
+	int getTotalPages(int numPerPage)throws Exception;
 
 	void addMember(Member member) throws Exception;
 

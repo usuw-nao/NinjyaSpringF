@@ -32,6 +32,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public List<Member> getMemberListByPage(int page, int numPerPage) throws Exception {
+		int offset = numPerPage * (page - 1);
+		return memberMapper.selectLimited(offset, numPerPage);
+	}
+
+	@Override
+	public int getTotalPages(int numPerPage) throws Exception {
+		double totalNum = (double)memberMapper.count();
+		return (int)Math.ceil(totalNum / numPerPage);
+	}
+	
+	
+	@Override
 	public void addMember(Member member) throws Exception {
 		memberMapper.insert(member);
 	}
@@ -52,5 +65,7 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberTypeMapper.selectAll();
 	}
+
+	
 
 }

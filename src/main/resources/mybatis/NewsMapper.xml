@@ -3,6 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.mapper.NewsMapper">
 
+<resultMap id="joinedResult" type="News" autoMapping="true">
+<id property="id" column="id" />
+<association property="detail" javaType="NewsDetail"
+autoMapping="true" />
+<collection property="targetList" ofType="MemberType"
+autoMapping="true">
+<id property="id" column="type_id" />
+</collection>
+</resultMap>
+
 <select id="selectAll" resultType="News">
 
 select
@@ -11,14 +21,24 @@ from news
 order by post_date desc
 </select>
 
-<select id="selectById" resultType="int">
-
-
-
+<select id="selectById" parameterType="int" resultMap="joinedResult">
+select
+news.id,news.title,news.author,news.post_date,
+news_details.article,news_details.photo,
+member_types.id as type_id,member_types.name
+from news
+join news_details
+on news.id = news_details.news_id
+left join news_targets
+on news.id = news_targets.news_id
+left join member_types
+on news_targets.type_id = member_types.id
+where news.id = #{id}
 </select>
 
-<insert id="insert" parameterType="News">
-
+<insert id="insert" parameterType="News" useGeneratedKeys="true" keyProperty="id">
+insert into news (title,author,post_date)
+values(#{title},#{author},#{postDate})
 </insert>
 
 

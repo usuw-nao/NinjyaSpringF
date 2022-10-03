@@ -1,10 +1,12 @@
 package com.example.app.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.domain.News;
 import com.example.app.domain.NewsDetail;
@@ -49,6 +51,18 @@ public class NewsServiceImpl implements NewsService{
 		NewsDetail detail = new NewsDetail();
 		detail.setNewsId(news.getId());
 		detail.setArticle(formData.getArticle());
+		
+		
+		//画像が選択されている場合の処理
+		MultipartFile upfile = formData.getUpfile();
+		if(!upfile.isEmpty()) {
+			String photo = upfile.getOriginalFilename();
+			detail.setPhoto(photo);
+			File dest = new File("C:/Users/zd2L03/uploads/" + photo);
+			upfile.transferTo(dest);
+			
+		}
+		
 		newsDetailMapper.insert(detail);
 		
 	

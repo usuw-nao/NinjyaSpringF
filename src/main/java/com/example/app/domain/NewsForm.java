@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -21,5 +23,8 @@ public class NewsForm {
 	private String article;
 	
 	private List<Integer>targetIdList;
+	
+	//画像
+	private MultipartFile upfile;
 
 }

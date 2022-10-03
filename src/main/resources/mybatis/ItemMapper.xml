@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.ItemMapper">
+
+	<select id="selectAll" resultType="Item">
+		select
+		items.id,items.item_id,items.name,items.number,items.no,
+		items.yes,items.destroy,items.text,
+		item_types.name as typeName
+		from items
+		join item_types
+		on items.type_id = item_types.id
+	</select>
+
+	<select id="selectById" parameterType="String" resultType="item">
+		select
+		items.id,items.item_id,items.name,items.number,
+		items.no,items.yes,items.destroy,items.text,
+		from items
+		where items.item_id = #{item_id}
+	</select>
+
+	<insert id="insert" parameterType="item">
+		insert into items (item_id,name,number,no,yes,destroy,text)
+		values (#{item_id},#{name},#{number},#{no},#{yes},#{destroy},#{text})
+	</insert>
+
+	<update id="update" parameterType="item">
+		update items
+		set item_id =#{itemId},name=#{name},number=#{number},no=#{no},
+		yes=#{yes},destroy=#{destroy},text=#{text}
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="id">
+		delete from items where id = #{id}
+	</delete>
+
+</mapper>

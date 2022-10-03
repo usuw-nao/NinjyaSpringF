@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1 class="my-4">[[${title}]]</h1>
-		<form action="" method="post" th:object="${member}">
+		<form action="" method="post" th:object="${members}">
 			<span th:errors="*{name}" class="error"></span>
 			<p class="mt-2">
 				氏名：<input type="text" th:field="*{name}">

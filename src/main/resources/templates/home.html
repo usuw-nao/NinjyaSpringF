@@ -13,6 +13,7 @@
 		<th:block th:if="${session.loginId}">
 			<a class="btn btn-primary btn-lg mt-4 mr-2" th:href="@{/members}">会員一覧</a>
 			<a class="btn btn-primary btn-lg mt-4 ml-2" th:href="@{/news}">お知らせ一覧</a>
+			<a class="btn btn-primary btn-lg mt-4 ml-2" th:href="@{/items}">忍具管理</a>
 		</th:block>
 
 		<th:block th:unless="${session.loginId}">

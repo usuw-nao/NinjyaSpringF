@@ -10,7 +10,8 @@
 
 <div class="container">
 <h1 class="my-4">お知らせの追加</h1>
-<form action="" method="post" th:object="${newsForm}">
+<form action="" method="post" th:object="${newsForm}"
+enctype = "multipart/form-data" id = "form" >
 <span  th:errors="*{title}" class="error"></span>
 <p class="mt-2">タイトル<input type="text" th:field="*{title}"></p>
 
@@ -28,14 +29,36 @@
 <textarea th:field="*{article}" cols="40" rows="5"></textarea>
 </p>
 
-<span class="error">イメージ画像に関するエラーメッセージ</span>
+<span th:errors="*{upfile}" class="error"></span>
 <p class="mt-2">イメージ画像:
-<input type="file" name="upfile"></p>
+<input type="file" th:field = "*{upfile}" id = "upfile" ></p>
 
 <input type="submit" class="btn btn-primary">
 </form>
 <p class="mt-4"><a th:href="@{/news}">一覧に戻る</a>
 </p>
 </div>
+
+<script>
+const MAX_FILE_SIZE = 10000000; //10MB
+const form = document.getElementById('form');
+const upfile = document.getElementById('upfile');
+
+form.addEventListener('submit',(event) =>{
+	const file = upfile.files[0];
+	if(file != undefined && file.size >= MAX_FILE_SIZE){
+		event.preventDefault();
+		
+		const errorElement = document.createElement('span');
+		errorElement.classLIst.add('error');
+		errorElement.textContent = 'ファイルサイズが大きすぎます';
+		
+		upfile.parentNode.before(errorElement);
+		
+		
+	}
+});
+
+</script>
 </body>
 </html>

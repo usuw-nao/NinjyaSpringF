@@ -14,5 +14,4 @@ public interface ItemService {
 	void deleteItem(Integer id)throws Exception;
 	List<ItemType>getTypeList()throws Exception;
 
-	20221004→myバティスの基礎BのItemServiceImplをつくるとこから始めて下さい。
 }

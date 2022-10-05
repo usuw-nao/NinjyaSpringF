@@ -22,7 +22,7 @@
 <table class="table">
 <tr>
 <th>ID</th>
-<th>流派</th>
+<th>種類</th>
 <th>名前</th>
 <th>総数</th>
 <th>使用後</th>
@@ -44,7 +44,7 @@
 <td><a class="btn btn-primary" th:href="@{/items/edit/{id}(id=${item.id})}">編集</a></td>
 <td>
 <a class="btn btn-danger" th:href="@{/items/delete/{id}(id=${item.id})}"
-data-toggle="${item.name}"></a></td>
+data-toggle="${item.name}">削除</a></td>
 </tr>
 </table>
 </div>

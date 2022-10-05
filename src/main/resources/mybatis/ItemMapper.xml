@@ -4,13 +4,7 @@
 <mapper namespace="com.example.app.mapper.ItemMapper">
 
 	<select id="selectAll" resultType="Item">
-		select
-		items.id,items.item_id,items.name,items.number,items.no,
-		items.yes,items.destroy,items.text,
-		item_types.name as typeName
-		from items
-		join item_types
-		on items.type_id = item_types.id
+		select * from items;
 	</select>
 
 	<select id="selectById" parameterType="String" resultType="item">
@@ -33,7 +27,7 @@
 		where id=#{id}
 	</update>
 
-	<delete id="delete" parameterType="id">
+	<delete id="delete" parameterType="int">
 		delete from items where id = #{id}
 	</delete>
 

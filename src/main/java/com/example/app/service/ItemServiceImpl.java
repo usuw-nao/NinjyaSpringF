@@ -30,6 +30,12 @@ public class ItemServiceImpl implements ItemService {
 	public Item getItemById(String itemId) throws Exception {
 		return itemMapper.selectById(itemId);
 	}
+	
+	@Override
+	public Item getItemId(Integer id) throws Exception {
+		return itemMapper.selectId(id);
+	}
+	
 
 	@Override
 	public void addItem(Item item) throws Exception {
@@ -50,6 +56,7 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemType> getTypeList() throws Exception {
 		return itemTypeMapper.selectAll();
 	}
+
 	
 
 }

@@ -9,6 +9,7 @@ public interface ItemService {
 	
 	List<Item>getItemList() throws Exception;
 	Item getItemById(String itemId) throws Exception;
+	Item getItemId(Integer id)throws Exception;
 	void addItem(Item item)throws Exception;
 	void editItem(Item item)throws Exception;
 	void deleteItem(Integer id)throws Exception;

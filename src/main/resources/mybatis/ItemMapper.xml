@@ -10,10 +10,21 @@
 	<select id="selectById" parameterType="String" resultType="item">
 		select
 		items.id,items.item_id,items.name,items.number,
-		items.no,items.yes,items.destroy,items.text,
+		items.no,items.yes,items.destroy,items.text
 		from items
 		where items.item_id = #{item_id}
 	</select>
+	
+	<select id="selectId" parameterType="int" resultType="item">
+	select
+		items.id,items.item_id,items.name,items.number,
+		items.no,items.yes,items.destroy,items.text
+		from items
+		where items.id = #{id}
+	
+	</select>
+	
+	
 
 	<insert id="insert" parameterType="item">
 		insert into items (item_id,name,number,no,yes,destroy,text)

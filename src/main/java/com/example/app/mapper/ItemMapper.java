@@ -11,6 +11,9 @@ public interface ItemMapper {
 
 	// itemIdによるそれぞれの取り出し
 	Item selectById(String itemId) throws Exception;
+	
+	//idによるそれぞれの取り出し
+	Item selectId(Integer id)throws Exception;
 
 	// 追加
 	void insert(Item item) throws Exception;

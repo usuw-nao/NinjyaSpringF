@@ -9,14 +9,13 @@
 <div class="container">
 <h1 class="mt-4">忍具一覧</h1>
 
-<div class="alert alert-succerss mt-4">
-忍具を追加しましたなどの操作メッセージ
+<div th:if="${statusMessage}" class="alert alert-info mt-4">
+[[${statusMessage}]]
 </div>
 
 <p>
 <a class="mt-4 btn btn-primary" th:href="@{/items/add}">忍具の追加</a>
-//選択するitemIdによって変わる
-<a class="mt-4 btn btn-secondary" th:href="@{/}"></a>
+<a class="mt-4 btn btn-secondary" th:href="@{/items/change}">選択するitemIdによって変わる</a>
 </p>
 
 <table class="table">

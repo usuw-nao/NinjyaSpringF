@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>[[${title}]]</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div class="container">
+		<h1 class="my-4">[[${title}]]</h1>
+		<form action="" method="post" th:object="${item}">
+			<span th:errors="*{name}" class="error"></span>
+			<p class="mt-2">
+				氏名:<input type="text" th:field="*{name}">
+			</p>
+			
+			<span th:errors="*{itemId}" class="error"></span>
+			<p class="mt-2">
+				種類:<select th:field="*{itemId}">
+				<option value="weapon">weapon</option>
+                <option value="food">food</option>
+                <option value="armor">armor</option>
+                <option value="bodyarmor">bodyarmor</option>
+                <option value="gunpowder">gunpowder</option>
+                <option value="others">others</option>
+           </select>
+			</p>
+			
+			<span th:errors="*{number}" class="error"></span>
+			<p class="mt-2">
+				総数:<input type="text" th:field="*{number}">
+			</p>
+			
+			<span th:errors="*{no}" class="error"></span>
+			<p class="mt-2">
+				使用不可:<input type="text" th:field="*{no}">
+			</p>
+			
+			<span th:errors="*{yes}" class="error"></span>
+			<p class="mt-2">
+				使用可:<input type="text" th:field="*{yes}">
+			</p>
+			
+			<span th:errors="*{destroy}" class="error"></span>
+			<p class="mt-2">
+				修理中:<input type="text" th:field="*{destroy}">
+			</p>
+			
+			<span th:errors="*{text}" class="error"></span>
+			<p class="mt-2">
+				覚書:<input type="text" th:field="*{text}">
+			</p>
+			<input type="submit" class="btn btn-primary">
+		</form>
+		<p class="mt-4">
+			<a th:href="@{/items}">一覧に戻る</a>
+		</p>
+
+	</div>
+
+</body>
+</html>

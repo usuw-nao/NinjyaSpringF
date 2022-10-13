@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Item {
 	
-	@NotBlank
+	
 	private Integer id;
 	
 	@NotBlank

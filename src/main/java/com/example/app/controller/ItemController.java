@@ -38,17 +38,15 @@ public class ItemController {
 	
 	
 	//itemIdによって表示が変わる
-	@GetMapping("/change")
-	public String changeGet(Model model)throws Exception{
+	@GetMapping("/{itemId}")
+	public String intoGet(Model model)throws Exception{
 		model.addAttribute("title","選択するitemIdによって変わる");
 		model.addAttribute("item", new Item());
 		model.addAttribute("types",service.getItemById(null));
 		return "items/save";
-		
-		
-		
-		
 	}
+	
+	
 	
 	@PostMapping("/add")
 	public String addPost(

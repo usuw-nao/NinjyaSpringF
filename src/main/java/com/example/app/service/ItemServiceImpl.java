@@ -36,6 +36,12 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.selectId(id);
 	}
 	
+	@Override
+	public void addinto(Item item) throws Exception {
+		itemMapper.into(item);		
+	}
+	
+	
 
 	@Override
 	public void addItem(Item item) throws Exception {
@@ -56,6 +62,8 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemType> getTypeList() throws Exception {
 		return itemTypeMapper.selectAll();
 	}
+
+	
 
 	
 

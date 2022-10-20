@@ -14,6 +14,9 @@ public interface ItemMapper {
 	
 	//idによるそれぞれの取り出し
 	Item selectId(Integer id)throws Exception;
+	
+	//itemIdで取り出す？試し
+	void into(Item item)throws Exception;
 
 	// 追加
 	void insert(Item item) throws Exception;
@@ -25,3 +28,4 @@ public interface ItemMapper {
 	void delete(Integer id) throws Exception;
 
 }
+
